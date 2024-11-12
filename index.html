@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        :root {
+            --primary-green: #2E8B57;
+            --dark-green: #1F593A;
+            --light-green: #E8F4EE;
+            --maroon: #800000;
+            --light-maroon: #fff5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .main-content, .login-box {
+            background: linear-gradient(#EEEEEE, #CCCCCC);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: var(--primary-green);
+            background: linear-gradient(to right, var(--primary-green), var(--dark-green));
+            margin: -30px -30px 30px -30px;
+            padding: 30px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .header h1 {
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .quick-tips {
+            background: var(--light-green);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-green);
+            margin-bottom: 30px;
+        }
+
+        .important-instructions {
+            margin-bottom: 30px;
+        }
+
+        .requirements-list {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+
+        .requirements-list li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .requirements-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .notices {
+            background: linear-gradient(#EEEEEE, #CCCCCC);
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .notices h3 {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-green);
+        }
+
+        .notice-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .notice-item {
+            background: linear-gradient(#FFFFFF, #F5F5F5);
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .notice-item:hover {
+            background: linear-gradient(var(--light-green), #E0E0E0);
+            border-color: var(--primary-green);
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(113,178,147,0.2);
+        }
+
+        .notice-icon {
+            background: var(--light-green);
+            padding: 8px;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .notice-link {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .notice-title {
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .notice-details {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .notice-item:hover .notice-title {
+            color: #600000;
+        }
+
+        .notice-item:hover .notice-details {
+            color: #333;
+        }
+
+        .helpdesk {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46,139,87,0.3);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #666;
+            background: var(--primary-green);
+            background: linear-gradient(to right, var(--primary-green), var(--dark-green));
+        }
+
+        .browser-note {
+            font-style: italic;
+            color: #666;
+        }
+
+        .login-image {
+            text-align: center;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46,139,87,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="header">
+                <h1>Welcome to Jamia Millia Islamia</h1>
+            </div>
+
+            <div class="quick-tips">
+                <h2>Quick Tips</h2>
+                <h3>IMPORTANT INSTRUCTIONS FOR CANDIDATES BEFORE APPLYING ONLINE</h3>
+                <p>Online Admission Form for Academic Session 2024-25</p>
+                
+                <h3>Keep the following items in your hand before applying:</h3>
+                <ul class="requirements-list">
+                    <li>Email id</li>
+                    <li>Mobile no</li>
+                    <li>Scanned photo</li>
+                    <li>Scanned signature</li>
+                    <li>Credit card, Net banking or ATM-cum-Debit card</li>
+                </ul>
+            </div>
+
+            <div class="notices">
+                <h3>Latest Notices</h3>
+                <div class="notice-container">
+                    <div class="notice-item">
+                        <span class="notice-icon">📢</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">Admission Notice</span>
+                            <span class="notice-details">M.Tech (Environmental Health Risk & Safety Management) (2024-25)</span>
+                        </a>
+                    </div>
+
+                    <div class="notice-item">
+                        <span class="notice-icon">📢</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">Admission Notice</span>
+                            <span class="notice-details">Certificate Courses in Yoga Studies (2024-25)</span>
+                        </a>
+                    </div>
+
+                    <div class="notice-item">
+                        <span class="notice-icon">⚠️</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">CORRIGENDUM</span>
+                            <span class="notice-details">ELIGIBILTY CRITERIA OF B.ED(B22) ENTRANCE EXAM</span>
+                        </a>
+                    </div>
+
+                    <div class="notice-item">
+                        <span class="notice-icon">⚠️</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">CORRIGENDUM</span>
+                            <span class="notice-details">DURATION OF ENTRANCE EXAM OF M80(M.Sc.(Banking and Financial Analytics))</span>
+                        </a>
+                    </div>
+
+                    <div class="notice-item">
+                        <span class="notice-icon">📢</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">ADMISSION NOTICE</span>
+                            <span class="notice-details">(2024-25)</span>
+                        </a>
+                    </div>
+
+                    <div class="notice-item">
+                        <span class="notice-icon">📋</span>
+                        <a href="#" class="notice-link">
+                            <span class="notice-title">REVISED PROSPECTUS</span>
+                            <span class="notice-details">JAMIA MILLIA ISLAMIA (2024-25)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="helpdesk">
+                <h3>HELPDESK</h3>
+                <p>Phone: 9836219994, 9836289994</p>
+                <p>Email: admission@jmicoe.in</p>
+            </div>
+        </div>
+
+        <div class="login-box">
+            <h2>Applicant Login</h2>
+            
+            <!-- Add the image container -->
+            <div class="login-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHLt5I7-pFsXiR3XofsVoawbiqRGHQRBmmOw&s" alt="University Logo">
+            </div>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Login</button>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot Password? Click Here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="browser-note">For the best view use Mozilla Firefox, Google Chrome browser</p>
+        <p>Copyright © 2024. All rights reserved.</p>
+    </div>
+</body>
+</html>
